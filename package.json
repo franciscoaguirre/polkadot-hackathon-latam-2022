@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "npx reveal-md ./src/slides.md"
+    "start": "npx reveal-md ./src/slides.md -w"
   },
   "devDependencies": {
     "reveal-md": "^5.3.4"

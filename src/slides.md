@@ -19,11 +19,11 @@ revealOptions:
 
 # Polkadot
 
----
+----
 
 ## ¿Qué es?
 
----
+----
 
 ## Historia
 
@@ -31,23 +31,23 @@ revealOptions:
 
 # Substrate
 
----
+----
 
 ## ¿Qué es?
 
----
+----
 
 ## ¿Por qué Rust?
 
----
+----
 
 ## ¿Por qué WASM?
 
----
+----
 
 ## ¿Qué nos provee?
 
----
+----
 
 ## Estructura de un nodo
 
@@ -55,7 +55,7 @@ revealOptions:
 
 # Parachains
 
----
+----
 
 ## Cumulus
 
@@ -63,27 +63,27 @@ revealOptions:
 
 # FRAME
 
----
+----
 
 ## Pallets
 
----
+----
 
 ## Estructura de un pallet
 
----
+----
 
 ## Almacenamiento
 
----
+----
 
 ## Despachables
 
----
+----
 
 ## Eventos y errores
 
----
+----
 
 ## Hooks
 
