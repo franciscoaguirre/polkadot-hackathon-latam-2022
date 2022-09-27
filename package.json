@@ -1,0 +1,11 @@
+{
+  "name": "polkadot-hackathon-bs-as-2022",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "npx reveal-md ./src/slides.md"
+  },
+  "devDependencies": {
+    "reveal-md": "^5.3.4"
+  }
+}
