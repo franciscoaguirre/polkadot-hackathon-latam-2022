@@ -10,9 +10,9 @@ revealOptions:
 
 # Presentadores
 
-<div style="display: flex; justify-content: between; height: 400px;">
-  <img alt="Francisco" src="./assets/francisco.jpg">
-  <img alt="Alejandro" src="./assets/alejandro.jpg">
+<div class="flex justify-between">
+  <img class="w-96 h-96 rounded-full" alt="cisco" src="./assets/francisco.jpg">
+  <img class="w-96 h-96 rounded-full" alt="ale" src="./assets/alejandro.jpg">
 </div>
 
 ---
