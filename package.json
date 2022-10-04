@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "npx tailwindcss -i ./src/style/input.css -o ./src/style/style.css --watch & npx reveal-md ./src/slides.md --css ./src/style/style.css -w"
+    "start": "npx tailwindcss -i ./src/style/input.css -o ./dist/output.css --watch & npx reveal-md ./src/slides.md --css ./dist/output.css -w"
   },
   "devDependencies": {
     "reveal-md": "^5.3.4",
