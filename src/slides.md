@@ -160,31 +160,160 @@ highlightTheme: monokai
 
 ---
 
-# Substrate
+<div class="flex justify-center h-full w-full p-6">
+  <img class="w-full" alt="logo" src="./assets/substrate-logo.svg">
+</div>
 
 ----
 
 ## ¿Qué es?
 
-----
-
-## ¿Por qué Rust?
-
-----
-
-## ¿Por qué WASM?
+Framework modular para desarrollo de blockchains escrita en Rust
 
 ----
 
 ## ¿Qué nos provee?
 
+- Interoperabilidad con otras chains
+- Módulos reutilizables para armar la lógica de negocio
+- Capacidad de evolucionar con el tiempo
+
+Note:
+TODO: Leer más de XCM
+Esta capacidad de evolucionar con el tiempo está dada debido a que el runtime
+(lógica de negocio) puede ser actualizado mediante governanza.
+
 ----
 
-## Estructura de un nodo
+## ¿Por qué Rust?
 
----
+<div class="flex gap-6">
+  <ul>
+    <li>Seguro</li>
+    <li>Rápido</li>
+    <li>Liviano</li>
+    <li>Compila a WASM</li>
+    <li>Divertido :D</li>
+  </ul>
+  <img src="./assets/ferris-happy.svg" width="500">
+</div>
 
-# Parachains
+Note:
+Rust es el lenguaje de programación con mejor soporte para compilar a WebAssembly.
+
+----
+
+## Arquitectura
+
+----
+
+<div class="flex flex-col">
+  <div class="mb-8 grid grid-cols-3 gap-6 bg-violet-400 rounded-lg p-3">
+    <!-- DIAGRAM -->
+    <div class="relative flex justify-center items-center p-6 h-full">
+      <div class="flex flex-col items-center">
+        <p class="text-3xl font-bold text-violet-800">WASM Runtime</p>
+        <img class="!m-0" src="./assets/wasm-icon.png" width="100">
+      </div>
+      <!-- ARROWS -->
+      <div class="absolute bg-violet-400 w-2 h-16 -bottom-16 left-[55px]">
+        <div class="absolute bg-violet-400 w-4 h-4 top-16 -left-[50%]" style="clip-path: polygon(0px 0px, 100% 0px, 50% 100%);"></div>
+      </div>
+      <div class="absolute bg-violet-400 w-2 h-16 -bottom-16 left-[110px]">
+        <div class="absolute bg-violet-400 w-4 h-4 top-16 -left-[50%]" style="clip-path: polygon(0px 0px, 100% 0px, 50% 100%);"></div>
+      </div>
+      <div class="absolute bg-violet-400 w-2 h-16 -bottom-16 left-[165px]">
+        <div class="absolute bg-violet-400 w-4 h-4 top-16 -left-[50%]" style="clip-path: polygon(0px 0px, 100% 0px, 50% 100%);"></div>
+      </div>
+      <div class="absolute bg-violet-400 w-2 h-16 -bottom-16 left-[220px]">
+        <div class="absolute bg-violet-400 w-4 h-4 top-16 -left-[50%]" style="clip-path: polygon(0px 0px, 100% 0px, 50% 100%);"></div>
+      </div>
+    </div>
+    <div class="flex flex-col justify-center items-center p-6 rounded-lg shadow-md bg-violet-800 shadow-violet-600 h-full">
+      <p class="text-2xl font-semibold m-auto text-violet-400">Pallets</p>
+      <ul class="!list-none space-y-1 !m-0 text-xl">
+        <li>Balances</li>
+        <li>Uniques</li>
+        <li>Custom</li>
+        <li>Etc...</li>
+      </ul>
+    </div>
+    <div class="flex flex-col items-center p-6 rounded-lg shadow-md bg-violet-800 shadow-violet-600 h-full">
+      <p class="text-2xl font-semibold m-auto text-violet-400">Runtime API</p>
+      <ul class="!list-none space-y-1 !m-0 text-xl">
+        <li class="fragment highlight-current-red" data-fragment-index="2">Procesamiento de bloques</li>
+        <li>Finalidad</li>
+        <li>Transacciones</li>
+        <li>Etc...</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-3 gap-6 bg-orange-400 rounded-lg p-3">
+    <!-- DIAGRAM -->
+    <div class="flex flex-col items-center p-6 rounded-lg shadow-md bg-orange-800 shadow-orange-600 h-full">
+      <p class="text-2xl font-semibold w-full m-auto text-orange-400">Host functions</p>
+      <ul class="!list-none !m-0 text-xl">
+        <li>Criptografía</li>
+        <li>Logging</li>
+        <li>Almacenamiento</li>
+        <li>Etc...</li>
+      </ul>
+    </div>
+    <div class="flex flex-col items-center p-6 rounded-lg shadow-md bg-orange-800 shadow-orange-600 h-full">
+      <p class="text-2xl font-semibold m-auto text-orange-400">Componentes</p>
+      <ul class="!list-none space-y-1 !m-0 text-xl">
+        <li class="fragment text-white highlight-current-red" data-fragment-index="1">Libp2p</li>
+        <li>Creador de bloques</li>
+        <li class="fragment text-white highlight-current-red" data-fragment-index="3">Base de datos</li>
+        <li>Etc...</li>
+      </ul>
+    </div>
+    <div class="relative flex justify-center items-center p-6 h-full">
+      <div class="flex flex-col items-center">
+        <p class="text-3xl font-bold text-orange-800">HOST</p>
+        <img class="!m-0" src="./assets/ferris-hand.svg" width="150">
+      </div>
+      <!-- ARROWS -->
+      <div class="absolute bg-orange-400 w-2 h-16 -top-16 right-[60px]">
+        <div class="absolute bg-orange-400 w-4 h-4 bottom-16 -left-[50%] rotate-180" style="clip-path: polygon(0px 0px, 100% 0px, 50% 100%);"></div>
+      </div>
+      <div class="absolute bg-orange-400 w-2 h-16 -top-16 right-[120px]">
+        <div class="absolute bg-orange-400 w-4 h-4 bottom-16 -left-[50%] rotate-180" style="clip-path: polygon(0px 0px, 100% 0px, 50% 100%);"></div>
+      </div>
+      <div class="absolute bg-orange-400 w-2 h-16 -top-16 right-[180px]">
+        <div class="absolute bg-orange-400 w-4 h-4 bottom-16 -left-[50%] rotate-180" style="clip-path: polygon(0px 0px, 100% 0px, 50% 100%);"></div>
+      </div>
+      <div class="absolute bg-orange-400 w-2 h-16 -top-16 right-[240px]">
+        <div class="absolute bg-orange-400 w-4 h-4 bottom-16 -left-[50%] rotate-180" style="clip-path: polygon(0px 0px, 100% 0px, 50% 100%);"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+Note:
+Un nodo de Substrate tiene dos partes, el host y el runtime.
+El runtime ejecuta la función de transición de la máquina de estados.
+El runtime es una máquina virtual del Rust compilado a WASM.
+
+----
+
+## ¿Por qué WASM?
+
+- Compacto
+- Sandboxed
+- Determinista
+- Rápido
+- Buen soporte
+
+Note:
+El runtime (la lógica de negocio) es un blob (binario) de WASM.
+Este blob se almacena en la base de datos, lo cual permite que sea actualizado
+mediante governanza.
+
+----
+
+## Forkless upgrades
 
 ----
 
