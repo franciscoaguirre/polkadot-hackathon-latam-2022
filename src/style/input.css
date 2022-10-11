@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.runtime-arrow {
+    @apply absolute bg-violet-400 w-2 h-16 -bottom-16;
+}
+
+.runtime-arrow > .arrow-head {
+    @apply absolute bg-violet-400 w-4 h-4 top-16;
+}
+
+.host-arrow {
+    @apply absolute bg-orange-400 w-2 h-16 -top-16;
+}
+
+.host-arrow > .arrow-head {
+    @apply absolute bg-orange-400 w-4 h-4 bottom-16;
+}

@@ -216,17 +216,132 @@ Rust es el lenguaje de programación con mejor soporte para compilar a WebAssemb
         <img class="!m-0" src="./assets/wasm-icon.png" width="100">
       </div>
       <!-- ARROWS -->
-      <div class="absolute bg-violet-400 w-2 h-16 -bottom-16 left-[55px]">
-        <div class="absolute bg-violet-400 w-4 h-4 top-16 -left-[50%]" style="clip-path: polygon(0px 0px, 100% 0px, 50% 100%);"></div>
+      <div class="runtime-arrow left-[55px]">
+        <div class="arrow-head -left-[50%]" style="clip-path: polygon(0px 0px, 100% 0px, 50% 100%);"></div>
       </div>
-      <div class="absolute bg-violet-400 w-2 h-16 -bottom-16 left-[110px]">
-        <div class="absolute bg-violet-400 w-4 h-4 top-16 -left-[50%]" style="clip-path: polygon(0px 0px, 100% 0px, 50% 100%);"></div>
+      <div class="runtime-arrow left-[110px]">
+        <div class="arrow-head -left-[50%]" style="clip-path: polygon(0px 0px, 100% 0px, 50% 100%);"></div>
       </div>
-      <div class="absolute bg-violet-400 w-2 h-16 -bottom-16 left-[165px]">
-        <div class="absolute bg-violet-400 w-4 h-4 top-16 -left-[50%]" style="clip-path: polygon(0px 0px, 100% 0px, 50% 100%);"></div>
+      <div class="runtime-arrow left-[165px]">
+        <div class="arrow-head -left-[50%]" style="clip-path: polygon(0px 0px, 100% 0px, 50% 100%);"></div>
       </div>
-      <div class="absolute bg-violet-400 w-2 h-16 -bottom-16 left-[220px]">
-        <div class="absolute bg-violet-400 w-4 h-4 top-16 -left-[50%]" style="clip-path: polygon(0px 0px, 100% 0px, 50% 100%);"></div>
+      <div class="runtime-arrow left-[220px]">
+        <div class="arrow-head -left-[50%]" style="clip-path: polygon(0px 0px, 100% 0px, 50% 100%);"></div>
+      </div>
+    </div>
+    <div class="flex flex-col justify-center items-center p-6 rounded-lg shadow-md bg-violet-800 shadow-violet-600 h-full">
+      <p class="text-2xl font-semibold m-auto text-violet-400">Pallets</p>
+      <ul class="!list-none space-y-1 !m-0 text-xl">
+        <li>Balances</li>
+        <li>Uniques</li>
+        <li>Custom</li>
+        <li>Etc...</li>
+      </ul>
+    </div>
+    <div class="flex flex-col items-center p-6 rounded-lg shadow-md bg-violet-800 shadow-violet-600 h-full">
+      <p class="text-2xl font-semibold m-auto text-violet-400">Runtime API</p>
+      <ul class="!list-none space-y-1 !m-0 text-xl">
+        <li>Procesamiento de bloques</li>
+        <li>Finalidad</li>
+        <li>Transacciones</li>
+        <li>Etc...</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-3 gap-6 bg-orange-400 rounded-lg p-3">
+    <!-- DIAGRAM -->
+    <div class="flex flex-col items-center p-6 rounded-lg shadow-md bg-orange-800 shadow-orange-600 h-full">
+      <p class="text-2xl font-semibold w-full m-auto text-orange-400">Host functions</p>
+      <ul class="!list-none !m-0 text-xl">
+        <li>Criptografía</li>
+        <li>Logging</li>
+        <li>Almacenamiento</li>
+        <li>Etc...</li>
+      </ul>
+    </div>
+    <div class="flex flex-col items-center p-6 rounded-lg shadow-md bg-orange-800 shadow-orange-600 h-full">
+      <p class="text-2xl font-semibold m-auto text-orange-400">Componentes</p>
+      <ul class="!list-none space-y-1 !m-0 text-xl">
+        <li>Libp2p</li>
+        <li>Creador de bloques</li>
+        <li>Base de datos</li>
+        <li>Etc...</li>
+      </ul>
+    </div>
+    <div class="relative flex justify-center items-center p-6 h-full">
+      <div class="flex flex-col items-center">
+        <p class="text-3xl font-bold text-orange-800">HOST</p>
+        <img class="!m-0" src="./assets/ferris-hand.svg" width="150">
+      </div>
+      <!-- ARROWS -->
+      <div class="host-arrow right-[60px]">
+        <div class="arrow-head -left-[50%] rotate-180" style="clip-path: polygon(0px 0px, 100% 0px, 50% 100%);"></div>
+      </div>
+      <div class="host-arrow right-[120px]">
+        <div class="arrow-head -left-[50%] rotate-180" style="clip-path: polygon(0px 0px, 100% 0px, 50% 100%);"></div>
+      </div>
+      <div class="host-arrow right-[180px]">
+        <div class="arrow-head -left-[50%] rotate-180" style="clip-path: polygon(0px 0px, 100% 0px, 50% 100%);"></div>
+      </div>
+      <div class="host-arrow right-[240px]">
+        <div class="arrow-head -left-[50%] rotate-180" style="clip-path: polygon(0px 0px, 100% 0px, 50% 100%);"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+Note:
+Un nodo de Substrate tiene dos partes, el host y el runtime.
+El runtime ejecuta la función de transición de la máquina de estados.
+El runtime es una máquina virtual del Rust compilado a WASM.
+Este WASM se encuentra en la base de datos del nodo.
+
+----
+
+## ¿Por qué WASM?
+
+- Compacto
+- Sandboxed
+- Determinista
+- Rápido
+- Buen soporte
+
+Note:
+El runtime (la lógica de negocio) es un blob (binario) de WASM.
+Este blob se almacena en la base de datos, lo cual permite que sea actualizado
+mediante governanza.
+
+----
+
+## Forkless upgrades
+
+Note:
+Debido a que la lógica de la chain está en el almacenamiento, una actualización no
+requiere un hard fork, es simplemente procesar un nuevo extrinsic.
+
+----
+
+<div class="flex flex-col">
+  <div class="mb-8 grid grid-cols-3 gap-6 bg-violet-400 rounded-lg p-3">
+    <!-- DIAGRAM -->
+    <div class="relative flex justify-center items-center p-6 h-full">
+      <div class="flex flex-col items-center">
+        <p class="text-3xl font-bold text-violet-800">WASM Runtime</p>
+        <img class="!m-0" src="./assets/wasm-icon.png" width="100">
+      </div>
+      <!-- ARROWS -->
+      <div class="runtime-arrow left-[55px]">
+        <div class="arrow-head -left-[50%]" style="clip-path: polygon(0px 0px, 100% 0px, 50% 100%);"></div>
+      </div>
+      <div class="runtime-arrow left-[110px]">
+        <div class="arrow-head -left-[50%]" style="clip-path: polygon(0px 0px, 100% 0px, 50% 100%);"></div>
+      </div>
+      <div class="runtime-arrow left-[165px]">
+        <div class="arrow-head -left-[50%]" style="clip-path: polygon(0px 0px, 100% 0px, 50% 100%);"></div>
+      </div>
+      <div class="runtime-arrow left-[220px]">
+        <div class="arrow-head -left-[50%]" style="clip-path: polygon(0px 0px, 100% 0px, 50% 100%);"></div>
       </div>
     </div>
     <div class="flex flex-col justify-center items-center p-6 rounded-lg shadow-md bg-violet-800 shadow-violet-600 h-full">
@@ -275,49 +390,41 @@ Rust es el lenguaje de programación con mejor soporte para compilar a WebAssemb
         <img class="!m-0" src="./assets/ferris-hand.svg" width="150">
       </div>
       <!-- ARROWS -->
-      <div class="absolute bg-orange-400 w-2 h-16 -top-16 right-[60px]">
-        <div class="absolute bg-orange-400 w-4 h-4 bottom-16 -left-[50%] rotate-180" style="clip-path: polygon(0px 0px, 100% 0px, 50% 100%);"></div>
+      <div class="host-arrow right-[60px]">
+        <div class="arrow-head -left-[50%] rotate-180" style="clip-path: polygon(0px 0px, 100% 0px, 50% 100%);"></div>
       </div>
-      <div class="absolute bg-orange-400 w-2 h-16 -top-16 right-[120px]">
-        <div class="absolute bg-orange-400 w-4 h-4 bottom-16 -left-[50%] rotate-180" style="clip-path: polygon(0px 0px, 100% 0px, 50% 100%);"></div>
+      <div class="host-arrow right-[120px]">
+        <div class="arrow-head -left-[50%] rotate-180" style="clip-path: polygon(0px 0px, 100% 0px, 50% 100%);"></div>
       </div>
-      <div class="absolute bg-orange-400 w-2 h-16 -top-16 right-[180px]">
-        <div class="absolute bg-orange-400 w-4 h-4 bottom-16 -left-[50%] rotate-180" style="clip-path: polygon(0px 0px, 100% 0px, 50% 100%);"></div>
+      <div class="host-arrow right-[180px]">
+        <div class="arrow-head -left-[50%] rotate-180" style="clip-path: polygon(0px 0px, 100% 0px, 50% 100%);"></div>
       </div>
-      <div class="absolute bg-orange-400 w-2 h-16 -top-16 right-[240px]">
-        <div class="absolute bg-orange-400 w-4 h-4 bottom-16 -left-[50%] rotate-180" style="clip-path: polygon(0px 0px, 100% 0px, 50% 100%);"></div>
+      <div class="host-arrow right-[240px]">
+        <div class="arrow-head -left-[50%] rotate-180" style="clip-path: polygon(0px 0px, 100% 0px, 50% 100%);"></div>
       </div>
     </div>
   </div>
 </div>
 
 Note:
-Un nodo de Substrate tiene dos partes, el host y el runtime.
-El runtime ejecuta la función de transición de la máquina de estados.
-El runtime es una máquina virtual del Rust compilado a WASM.
-
-----
-
-## ¿Por qué WASM?
-
-- Compacto
-- Sandboxed
-- Determinista
-- Rápido
-- Buen soporte
-
-Note:
-El runtime (la lógica de negocio) es un blob (binario) de WASM.
-Este blob se almacena en la base de datos, lo cual permite que sea actualizado
-mediante governanza.
-
-----
-
-## Forkless upgrades
+Como ejemplo en el diagrama, viene un bloque con un extrinsic de runtime upgrade.
+Este bloque llega al host del nodo por la red mediante libp2p.
+Luego se llama a la API del runtime actual que se tiene para procesar el bloque
+(solo el runtime tiene esta lógica).
+Esta lógica determina que se va a sustituír el runtime viejo con el nuevo y el nuevo
+se pone en la base de datos.
+A partir de aquí se pasa a usar el runtime nuevo porque sustituyó al viejo.
 
 ----
 
 ## Cumulus
+
+Note:
+Cumulus es un proyecto que van a querer utilizar si quieren hacer una parachain con Substrate.
+Mientras que Substrate te permite crear una chain con todos los módulos reutilizables que mencionamos,
+Cumulus permite que esté pronta para funcionar con una relay chain.
+Hay una template para empezar desde cero con Substrate y Cumulus para hacer una parachain, van a querer
+empezar con esa en vez de con la substrate-node-template si quieren hacer una parachain.
 
 ---
 
