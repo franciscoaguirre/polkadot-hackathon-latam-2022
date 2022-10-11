@@ -2,6 +2,7 @@
 title: Polkadot Hackathon Latam 2022
 revealOptions:
   transition: slide
+highlightTheme: monokai
 ---
 
 ## Polkadot Hackathon LATAM 2022
@@ -135,7 +136,7 @@ revealOptions:
   <div class="flex items-center p-6 rounded-lg shadow-md bg-emerald-800 shadow-emerald-600 h-16">
     <p class="text-xl font-medium w-full m-auto">Networking P2P</p>
   </div>
-  <div class="flex items-center p-6 rounded-lg shadow-md bg-emerald-800 shadow-emeraldl-600 h-16">
+  <div class="flex items-center p-6 rounded-lg shadow-md bg-emerald-800 shadow-emerald-600 h-16">
     <p class="text-xl font-medium w-full m-auto">Consenso</p>
   </div>
   <div class="flex items-center p-6 rounded-lg shadow-md bg-emerald-800 shadow-emerald-600 h-16">
@@ -191,34 +192,186 @@ revealOptions:
 
 ---
 
-# FRAME
+## Frame
+
+<div class="flex justify-between">
+  <div class="w-6/12 flex flex-col justify-center">
+    <p class="text-2xl text-left py-3">• Acrónimo de "Framework for Runtime Aggregation of Modularized Entities"</p>
+    <p class="text-2xl text-left py-3">• Entorno de desarrollo dentro de substrate que provee modulos, llamados Pallets.</p>
+    <p class="text-2xl text-left py-3">• Los Pallets proveen funcionalidad especifica que puedes incluir en tu Runtime.</p>
+  </div>
+  <img class="h-96" alt="frame" src="./assets/pallet.png">
+</div>
 
 ----
 
-## Pallets
+### Pallets
+
+<div class="flex justify-between">
+  <div class="w-6/12 flex flex-col justify-center">
+    <p class="text-2xl text-left py-3">• Permiten construir una lógica de aplicación usando componentes predefinidos.</p>
+    <p class="text-2xl text-left py-3">• Cada Pallet define tipos, elementos de almacenamiento y funciones para implementar una funcionalidad específica.</p>
+  </div>
+  <div class="grid grid-cols-3 gap-3 bg-emerald-500 rounded-lg p-3 ml-20 content-center h-min my-auto">
+    <div class="flex items-center p-6 rounded-lg shadow-md bg-emerald-800 shadow-emerald-600 h-16">
+      <p class="text-xl font-medium w-full m-auto">BABE</p>
+    </div>
+    <div class="flex items-center p-6 rounded-lg shadow-md bg-teal-500 shadow-teal-400 h-16">
+      <p class="text-xl font-medium w-full m-auto">GRANDPA</p>
+    </div>
+    <div class="flex items-center p-6 rounded-lg shadow-md bg-teal-500 shadow-teal-400 h-16">
+      <p class="text-xl font-medium w-full m-auto">Assets</p>
+    </div>
+    <div class="flex items-center p-6 rounded-lg shadow-md bg-teal-500 shadow-teal-400 h-16">
+      <p class="text-xl font-medium w-full m-auto">EVM</p>
+    </div>
+    <div class="flex items-center p-6 rounded-lg shadow-md bg-emerald-800 shadow-emerald-600 h-16">
+      <p class="text-xl font-medium w-full m-auto">Identity</p>
+    </div>
+    <div class="flex items-center p-6 rounded-lg shadow-md bg-emerald-800 shadow-emerald-600 h-16">
+      <p class="text-xl font-medium w-full m-auto">Staking</p>
+    </div>
+      <div class="flex items-center p-6 rounded-lg shadow-md bg-emerald-800 shadow-emerald-600 h-16">
+      <p class="text-xl font-medium w-full m-auto">Multisig</p>
+    </div>
+    <div class="flex items-center p-6 rounded-lg shadow-md bg-emerald-800 shadow-emerald-600 h-16">
+      <p class="text-xl font-medium w-full m-auto">Uniques</p>
+    </div>
+    <div class="flex items-center p-6 rounded-lg shadow-md bg-teal-500 shadow-teal-400 h-16">
+      <p class="text-xl font-medium w-full m-auto">Contracts</p>
+    </div>
+  </div>
+</div>
 
 ----
 
-## Estructura de un pallet
+### Estructura General
+
+<pre>
+  <code data-trim data-noescape>
+    // Imports y dependencias
+    pub use pallet::*;
+
+    // Definir el modulo pallet
+    #[frame_support::pallet]
+    pub mod pallet {
+    use frame_support::pallet_prelude::*;
+    use frame_system::pallet_prelude::*;
+
+    ...
+
+    }
+  </code>
+</pre>
 
 ----
 
-## Almacenamiento
+### Configuracion Principal
+
+<pre>
+  <code data-trim data-noescape>
+    // Declarar el tipo del pallet, traits y metodos
+    #[pallet::pallet]
+    #[pallet::generate_store(pub(super) trait Store)]
+    pub struct Pallet<T>(_);
+
+    // Configurar el pallet especificando los tipos
+    // y parametros de los que depende
+    #[pallet::config]
+    pub trait Config: frame_system::Config { ... }
+  </code>
+</pre>
 
 ----
 
-## Despachables
+### Almacenamiento
+
+<pre>
+  <code data-trim data-noescape>
+    #[pallet::storage]
+    type SomePrivateValue<T> = StorageValue<_, u32, ValueQuery>;
+
+    #[pallet::storage]
+    #[pallet::getter(fn some_primitive_value)]
+    pub(super) type SomePrimitiveValue<T> = StorageValue<_, u32, ValueQuery>;
+
+    #[pallet::storage]
+    #[pallet::getter(fn some_map)]
+    pub(super) type SomeMap<T: Config> = StorageMap<_, Blake2_128Concat, T::AccountId, u32, ValueQuery>;
+  </code>
+</pre>
 
 ----
 
-## Eventos y errores
+### Eventos
+
+<pre>
+  <code data-trim data-noescape>
+    // Pallets use events to inform users when important changes are made.
+    // Event documentation should end with an array that provides descriptive names for parameters.
+    #[pallet::event]
+    #[pallet::generate_deposit(pub(super) fn deposit_event)]
+    pub enum Event<T: Config> {
+      /// Event emitted when a claim has been created.
+      ClaimCreated { who: T::AccountId, claim: T::Hash },
+      /// Event emitted when a claim is revoked by the owner.
+      ClaimRevoked { who: T::AccountId, claim: T::Hash },
+    }
+  </code>
+</pre>
 
 ----
 
-## Hooks
+### Errores
+
+<pre>
+  <code data-trim data-noescape>
+    #[pallet::error]
+    pub enum Error<T> {
+      /// The claim already exists.
+      AlreadyClaimed,
+      /// The claim does not exist, so it cannot be revoked.
+      NoSuchClaim,
+      /// The claim is owned by another account, so caller can't revoke it.
+      NotClaimOwner,
+    }
+  </code>
+</pre>
+
+----
+
+### Despachables
+
+<pre>
+  <code data-trim data-noescape>
+    // Add functions that are callable
+    // from outside the runtime.
+    #[pallet::call]
+    impl<T:Config> Pallet<T> { ... }
+  </code>
+</pre>
 
 ---
 
-# Otros recursos
+### Recursos
 
-[comment]: # "TODO: Copiar de Sasha"
+<div class="grid grid-cols-2 gap-8 mt-20">
+  <div class="flex items-center justify-center rounded-lg shadow-md bg-emerald-800 shadow-emerald-600">
+    <a class="text-2xl p-6" href="https://github.com/substrate-developer-hub/substrate-node-template">Substrate Node Template</a>
+  </div>
+  <div class="flex items-center justify-center rounded-lg shadow-md bg-emerald-800 shadow-emerald-600">
+    <a class="text-2xl p-6" href="https://github.com/paritytech/substrate/tree/master/frame">FRAME Pallets</a>
+  </div>
+  <div class="flex items-center justify-center rounded-lg shadow-md bg-emerald-800 shadow-emerald-600">
+    <a class="text-2xl p-6" href="https://github.com/substrate-developer-hub/substrate-front-end-template">Substrate Frontend Template</a>
+  </div>
+  <div class="flex items-center justify-center rounded-lg shadow-md bg-emerald-800 shadow-emerald-600">
+    <a class="text-2xl p-6" href="https://learn.figment.io/tutorials/substrate-kitties-setup">Substrate Kitties</a>
+  </div>
+  <div class="flex items-center justify-center rounded-lg shadow-md bg-emerald-800 shadow-emerald-600">
+    <a class="text-2xl p-6" href="https://github.com/substrate-developer-hub/substrate-parachain-template">Substrate Parachain Template</a>
+  </div>
+  <div class="flex items-center justify-center rounded-lg shadow-md bg-emerald-800 shadow-emerald-600">
+    <a class="text-2xl p-6" href="https://docs.substrate.io/quick-start/">Documentación de Substrate</a>
+  </div>
+</div>
