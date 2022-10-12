@@ -485,109 +485,102 @@ empezar con esa en vez de con la substrate-node-template si quieren hacer una pa
 
 ### Estructura General <!-- .element: class="!text-substrate" -->
 
-<pre>
-  <code data-trim data-noescape>
-    // Imports y dependencias
-    pub use pallet::*;
+```rust
+// Imports y dependencias
+pub use pallet::*;
 
-    // Definir el modulo pallet
-    #[frame_support::pallet]
-    pub mod pallet {
-    use frame_support::pallet_prelude::*;
-    use frame_system::pallet_prelude::*;
+// Definir el modulo pallet
+#[frame_support::pallet]
+pub mod pallet {
+use frame_support::pallet_prelude::*;
+use frame_system::pallet_prelude::*;
 
-    ...
+...
 
-    }
-  </code>
-</pre>
+}
+```
 
 ----
 
 ### Configuracion Principal <!-- .element: class="!text-substrate" -->
 
-<pre>
-  <code data-trim data-noescape>
-    // Declarar el tipo del pallet, traits y metodos
-    #[pallet::pallet]
-    #[pallet::generate_store(pub(super) trait Store)]
-    pub struct Pallet<T>(_);
+```rust
+// Declarar el tipo del pallet, traits y metodos
+#[pallet::pallet]
+#[pallet::generate_store(pub(super) trait Store)]
+pub struct Pallet<T>(_);
 
-    // Configurar el pallet especificando los tipos
-    // y parametros de los que depende
-    #[pallet::config]
-    pub trait Config: frame_system::Config { ... }
-  </code>
-</pre>
+// Configurar el pallet especificando los tipos
+// y parametros de los que depende
+#[pallet::config]
+pub trait Config: frame_system::Config {
+  type Currency: Currency<Self::AccountId>;
+}
+```
 
 ----
 
 ### Almacenamiento <!-- .element: class="!text-substrate" -->
 
-<pre>
-  <code data-trim data-noescape>
-    #[pallet::storage]
-    type SomePrivateValue<T> = StorageValue<_, u32, ValueQuery>;
+```rust
+#[pallet::storage]
+type SomePrivateValue<T> = StorageValue<_, u32, ValueQuery>;
 
-    #[pallet::storage]
-    #[pallet::getter(fn some_primitive_value)]
-    pub(super) type SomePrimitiveValue<T> = StorageValue<_, u32, ValueQuery>;
+#[pallet::storage]
+#[pallet::getter(fn some_primitive_value)]
+pub(super) type SomePrimitiveValue<T> = StorageValue<_, u32, ValueQuery>;
 
-    #[pallet::storage]
-    #[pallet::getter(fn some_map)]
-    pub(super) type SomeMap<T: Config> = StorageMap<_, Blake2_128Concat, T::AccountId, u32, ValueQuery>;
-  </code>
-</pre>
+#[pallet::storage]
+#[pallet::getter(fn some_map)]
+pub(super) type SomeMap<T: Config> = StorageMap<_, Blake2_128Concat, T::AccountId, u32, ValueQuery>;
+```
 
 ----
 
 ### Eventos <!-- .element: class="!text-substrate" -->
 
-<pre>
-  <code data-trim data-noescape>
-    // Pallets use events to inform users when important changes are made.
-    // Event documentation should end with an array that provides descriptive names for parameters.
-    #[pallet::event]
-    #[pallet::generate_deposit(pub(super) fn deposit_event)]
-    pub enum Event<T: Config> {
-      /// Event emitted when a claim has been created.
-      ClaimCreated { who: T::AccountId, claim: T::Hash },
-      /// Event emitted when a claim is revoked by the owner.
-      ClaimRevoked { who: T::AccountId, claim: T::Hash },
-    }
-  </code>
-</pre>
+```rust
+#[pallet::event]
+#[pallet::generate_deposit(pub(super) fn deposit_event)]
+pub enum Event<T: Config> {
+  /// Descripcion del evento
+  DepositoCreado { who: T::AccountId, amount: T::Balance },
+}
+```
 
 ----
 
 ### Errores <!-- .element: class="!text-substrate" -->
 
-<pre>
-  <code data-trim data-noescape>
-    #[pallet::error]
-    pub enum Error<T> {
-      /// The claim already exists.
-      AlreadyClaimed,
-      /// The claim does not exist, so it cannot be revoked.
-      NoSuchClaim,
-      /// The claim is owned by another account, so caller can't revoke it.
-      NotClaimOwner,
-    }
-  </code>
-</pre>
+```rust
+#[pallet::error]
+pub enum Error<T> {
+  /// Descripcion del error.
+  FondosInsuficientes,
+}
+```
 
 ----
 
 ### Despachables <!-- .element: class="!text-substrate" -->
 
-<pre>
-  <code data-trim data-noescape>
-    // Add functions that are callable
-    // from outside the runtime.
-    #[pallet::call]
-    impl<T:Config> Pallet<T> { ... }
-  </code>
-</pre>
+```rust
+#[pallet::call]
+impl<T: Config> Pallet<T> {
+  #[pallet::weight(10_000 + T::DbWeight::get().writes(1).ref_time())]
+  pub fn create_workshop(origin: OriginFor<T>, name: WorkshopName<T>) -> DispatchResult {
+    let who: AccountOf<T> = ensure_signed(origin)?;
+
+    let workshop_id = T::Hashing::hash_of(&Self::gen_id());
+
+    Workshops::<T>::insert(workshop_id, name.clone());
+
+    Self::deposit_event(Event::WorkshopCreated { name });
+
+    Ok(())
+  }
+}
+```
 
 ---
 
