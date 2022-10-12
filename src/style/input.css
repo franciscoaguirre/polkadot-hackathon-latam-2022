@@ -17,3 +17,20 @@
 .host-arrow > .arrow-head {
     @apply absolute bg-orange-400 w-4 h-4 bottom-16;
 }
+
+@font-face {
+    font-family: Unbounded;
+    src: url('./fonts/Unbounded-Regular.woff2') format('woff2');
+    font-weight: regular;
+}
+
+@font-face {
+    font-family: Unbounded;
+    src: url('./fonts/Unbounded-Bold.woff2') format('woff2');
+    font-weight: bold;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    font-family: Unbounded !important;
+    font-weight: normal !important;
+}

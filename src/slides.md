@@ -5,13 +5,15 @@ revealOptions:
 highlightTheme: monokai
 ---
 
-## Polkadot Hackathon LATAM 2022
+# Polkadot Hackathon LATAM 2022 <!-- .element: class="!text-polkadot" -->
 
-## Introducción a Substrate
+----
+
+## Introducción a Substrate <!-- .element: class="!text-substrate" -->
 
 ---
 
-# Presentadores
+## Presentadores <!-- .element: class="!text-polkadot" -->
 
 <div class="flex justify-between h-full w-full p-6">
   <img class="w-96 h-96 rounded-full" alt="cisco" src="./assets/francisco.jpg">
@@ -59,8 +61,8 @@ highlightTheme: monokai
     </div>
   </div>
 
-  <div class="flex h-48 mx-24 mt-24">
-    <img alt="logo" src="./assets/arrow.svg">
+  <div class="flex mx-24 mt-24">
+    <img alt="logo" src="./assets/arrow.svg" width="200">
   </div>
 
   <div class="flex flex-col w-full">
@@ -98,7 +100,7 @@ highlightTheme: monokai
 
 <div class="grid grid-cols-12 gap-6">
   <div class="flex items-center p-6 rounded-lg shadow-md bg-teal-800 shadow-teal-600 h-16 col-span-3">
-    <p class="text-xl font-medium w-full m-auto">Almacenamiento</p>
+    <p class="text-xl font-medium w-full m-auto">BD</p>
   </div>
   <div class="flex items-center p-6 rounded-lg shadow-md bg-teal-800 shadow-teal-600 h-16 col-span-3">
     <p class="text-xl font-medium w-full m-auto">Networking P2P</p>
@@ -166,13 +168,13 @@ highlightTheme: monokai
 
 ----
 
-## ¿Qué es?
+## ¿Qué es? <!-- .element: class="!text-substrate" -->
 
 Framework modular para desarrollo de blockchains escrita en Rust
 
 ----
 
-## ¿Qué nos provee?
+## ¿Qué nos provee? <!-- .element: class="!text-substrate" -->
 
 - Interoperabilidad con otras chains
 - Módulos reutilizables para armar la lógica de negocio
@@ -185,7 +187,7 @@ Esta capacidad de evolucionar con el tiempo está dada debido a que el runtime
 
 ----
 
-## ¿Por qué Rust?
+## ¿Por qué Rust? <!-- .element: class="!text-substrate" -->
 
 <div class="flex gap-6">
   <ul>
@@ -203,7 +205,7 @@ Rust es el lenguaje de programación con mejor soporte para compilar a WebAssemb
 
 ----
 
-## Arquitectura
+## Arquitectura <!-- .element: class="!text-substrate" -->
 
 ----
 
@@ -299,7 +301,7 @@ Este WASM se encuentra en la base de datos del nodo.
 
 ----
 
-## ¿Por qué WASM?
+## ¿Por qué WASM? <!-- .element: class="!text-substrate" -->
 
 - Compacto
 - Sandboxed
@@ -314,7 +316,7 @@ mediante governanza.
 
 ----
 
-## Forkless upgrades
+## Forkless upgrades <!-- .element: class="!text-substrate" -->
 
 Note:
 Debido a que la lógica de la chain está en el almacenamiento, una actualización no
@@ -417,7 +419,7 @@ A partir de aquí se pasa a usar el runtime nuevo porque sustituyó al viejo.
 
 ----
 
-## Cumulus
+## Cumulus <!-- .element: class="!text-substrate" -->
 
 Note:
 Cumulus es un proyecto que van a querer utilizar si quieren hacer una parachain con Substrate.
@@ -428,7 +430,7 @@ empezar con esa en vez de con la substrate-node-template si quieren hacer una pa
 
 ---
 
-## Frame
+## Frame <!-- .element: class="!text-substrate" -->
 
 <div class="flex justify-between">
   <div class="w-6/12 flex flex-col justify-center">
@@ -441,7 +443,7 @@ empezar con esa en vez de con la substrate-node-template si quieren hacer una pa
 
 ----
 
-### Pallets
+### Pallets <!-- .element: class="!text-substrate" -->
 
 <div class="flex justify-between">
   <div class="w-6/12 flex flex-col justify-center">
@@ -481,7 +483,7 @@ empezar con esa en vez de con la substrate-node-template si quieren hacer una pa
 
 ----
 
-### Estructura General
+### Estructura General <!-- .element: class="!text-substrate" -->
 
 <pre>
   <code data-trim data-noescape>
@@ -502,7 +504,7 @@ empezar con esa en vez de con la substrate-node-template si quieren hacer una pa
 
 ----
 
-### Configuracion Principal
+### Configuracion Principal <!-- .element: class="!text-substrate" -->
 
 <pre>
   <code data-trim data-noescape>
@@ -520,7 +522,7 @@ empezar con esa en vez de con la substrate-node-template si quieren hacer una pa
 
 ----
 
-### Almacenamiento
+### Almacenamiento <!-- .element: class="!text-substrate" -->
 
 <pre>
   <code data-trim data-noescape>
@@ -539,7 +541,7 @@ empezar con esa en vez de con la substrate-node-template si quieren hacer una pa
 
 ----
 
-### Eventos
+### Eventos <!-- .element: class="!text-substrate" -->
 
 <pre>
   <code data-trim data-noescape>
@@ -558,7 +560,7 @@ empezar con esa en vez de con la substrate-node-template si quieren hacer una pa
 
 ----
 
-### Errores
+### Errores <!-- .element: class="!text-substrate" -->
 
 <pre>
   <code data-trim data-noescape>
@@ -576,7 +578,7 @@ empezar con esa en vez de con la substrate-node-template si quieren hacer una pa
 
 ----
 
-### Despachables
+### Despachables <!-- .element: class="!text-substrate" -->
 
 <pre>
   <code data-trim data-noescape>
@@ -589,9 +591,9 @@ empezar con esa en vez de con la substrate-node-template si quieren hacer una pa
 
 ---
 
-### Recursos
+### Recursos <!-- .element: class="!text-substrate" -->
 
-<div class="grid grid-cols-2 gap-8 mt-20">
+<div class="grid grid-cols-2 gap-8 mt-20 no-underline">
   <div class="flex items-center justify-center rounded-lg shadow-md bg-emerald-800 shadow-emerald-600">
     <a class="text-2xl p-6" href="https://github.com/substrate-developer-hub/substrate-node-template">Substrate Node Template</a>
   </div>
