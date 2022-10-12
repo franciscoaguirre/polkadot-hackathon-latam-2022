@@ -13,7 +13,7 @@ highlightTheme: monokai
 
 ---
 
-## Presentadores <!-- .element: class="!text-polkadot" -->
+## Presentadores <!-- .element: class="!text-substrate" -->
 
 <div class="flex justify-between h-full w-full p-6">
   <img class="w-96 h-96 rounded-full" alt="cisco" src="./assets/francisco.jpg">
