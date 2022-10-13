@@ -1,6 +1,8 @@
 # Introducción a Substrate
 
-Esta presentación trata de una introducción a Substrate, un framework open source que permite crear blockchains de aplicacion específica de una manera rápida y segura. Realizada para presentar a los desarrolladores participando del Polkadot Hackathon LATAM 2022
+Esta presentación fue dada en el Polkadot Hackathon Latam 2022.
+Es una introducción a Substrate, un framework open source que permite crear blockchains de aplicación específica de manera rápida y segura.
+Esta presentación también tuvo una sección de [live coding](https://github.com/brech1/substrate-rsvp).
 
 ## Correr Localmente
 
