@@ -181,7 +181,7 @@ Framework modular para desarrollo de blockchains escrita en Rust
 - Capacidad de evolucionar con el tiempo
 
 Note:
-TODO: Leer más de XCM
+La interoperabilidad se da por XCM.
 Esta capacidad de evolucionar con el tiempo está dada debido a que el runtime
 (lógica de negocio) puede ser actualizado mediante governanza.
 
